@@ -1,0 +1,217 @@
+syntax = "proto3";
+
+package watcher;
+
+option go_package = "github.com/azzykesuma/warframeMarket/api/proto";
+
+// WarframeMarketWatcher provides methods to watch for market updates.
+service WarframeMarketWatcher {
+  // WatchItem allows a client to subscribe to market updates for a specific item.
+  rpc WatchItem(ItemRequest) returns (stream MarketUpdate) {}
+  rpc WatchAllItem(AllItemRequest) returns (stream AllMarketUpdate) {}
+
+  rpc ListItems(ListItemsRequest) returns (ItemShortList);
+  rpc GetItemById(GetItemRequest) returns (GetItemResponse);
+  rpc GetItemBySlug(GetItemBySlugRequest) returns (GetItemResponse);
+  rpc GetItemOrders(ItemOrdersRequest) returns (OrderList);
+  rpc GetTopItemOrders(TopItemOrdersRequest) returns (TopOrdersResponse);
+  rpc GetMyOrders(Empty) returns (OrderList);
+  rpc CreateOrder(CreateOrderRequest) returns (ActionResponse);
+  rpc UpdateOrder(UpdateOrderRequest) returns (ActionResponse);
+  rpc DeleteOrder(OrderId) returns (ActionResponse);
+  rpc GetRecentTransactions(ItemRequest) returns (TransactionList);
+  rpc GetOrderDetail(OrderId) returns (GetOrderDetailResponse);
+}
+
+message Empty {}
+
+// AllItemRequest represents the request to watch all items
+message AllItemRequest {}
+
+// ItemRequest represents the request to watch a specific item.
+message ItemRequest {
+  string item_name = 1;
+}
+
+message ListItemsRequest {
+  string language = 1;
+}
+
+// Request message for getting an item
+message GetItemRequest {
+  string item_id = 1;
+  string language = 2;
+}
+
+message GetItemBySlugRequest {
+  string item_slug = 1;
+  string language = 2;
+}
+
+// Top-level response envelope
+message GetItemResponse {
+  string api_version = 1;
+  ItemDetail data = 2;
+  string error = 3;
+}
+
+message ItemDetail {
+  string id = 1;
+  string slug = 2;
+  string game_ref = 3;
+  repeated string tags = 4;
+  repeated string subtypes = 5;
+  bool vaulted = 6;
+  int32 trading_tax = 7;
+  bool tradable = 8;
+  ItemI18N i18n = 9;
+  int32 max_rank = 10;
+  int32 ducats = 11;
+}
+
+message ItemI18N {
+  ItemLanguageDetail en = 1;
+}
+
+message ItemLanguageDetail {
+  string name = 1;
+  string description = 2;
+  string icon = 3;
+  string thumb = 4;
+  string sub_icon = 5;
+}
+
+message ItemShort {
+  string id = 1;
+  string slug = 2;
+  string game_ref = 3;
+  repeated string tags = 4;
+  repeated string subtypes = 5;
+  bool vaulted = 6;
+  int32 max_rank = 7;
+  int32 ducats = 8;
+  ItemI18N i18n = 9;
+}
+
+message ItemShortList {
+  string api_version = 1;
+  repeated ItemShort items = 2;
+  string error = 3;
+}
+
+message ItemOrdersRequest {
+  string item_slug = 1;
+}
+
+message TopItemOrdersRequest {
+  string item_slug = 1;
+  int32 rank = 2;
+}
+
+// MarketUpdate represents an event matching the item being watched.
+message MarketUpdate {
+  string item_name = 1;
+  string order_type = 2; // e.g., "sell" or "buy"
+  int32 price = 3;
+  int32 quantity = 4;
+  string user_name = 5;
+}
+
+message AllMarketUpdate {
+  repeated MarketUpdate market_updates = 1;
+}
+
+message Order {
+  string id = 1;
+  string item_id = 2;
+  int32 price = 3;
+  int32 quantity = 4;
+  string order_type = 5; // "sell" or "buy"
+  string item_slug = 6;
+  string subtype = 7;
+  bool visible = 8;
+  string created_at = 9;
+  string updated_at = 10;
+  User user = 11;
+}
+
+message OrderList {
+  string api_version = 1;
+  repeated Order orders = 2;
+  string error = 3;
+}
+
+message TopOrdersResponse {
+  string api_version = 1;
+  repeated Order sell = 2;
+  repeated Order buy = 3;
+  string error = 4;
+}
+
+message User {
+  string id = 1;
+  string ingame_name = 2;
+  string status = 3;
+  string platform = 4;
+  int32 reputation = 5;
+}
+
+message CreateOrderRequest {
+  string item_id = 1;
+  string type = 2;
+  int32 platinum = 3;
+  int32 quantity = 4;
+  bool visible = 5;
+  string subtype = 6;
+}
+
+message UpdateOrderRequest {
+  string id = 1;
+  int32 platinum = 2;
+  int32 quantity = 3;
+  bool visible = 4;
+}
+
+message ActionResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message Transaction {
+  string id = 1;
+  string item_name = 2;
+  int32 price = 3;
+  int32 quantity = 4;
+  string order_type = 5; // "sell" or "buy"
+  string counterparty_name = 6;
+  string created_at = 7;
+}
+
+message TransactionList {
+  repeated Transaction transactions = 1;
+}
+
+message OrderId {
+  string id = 1;
+}
+
+message OrderDetail {
+  string id = 1;
+  string type = 2;        // "sell" or "buy"
+  int32 platinum = 3;
+  int32 quantity = 4;
+  int32 per_trade = 5;
+  string subtype = 6;     // e.g., "intact"
+  bool visible = 7;
+  string created_at = 8;
+  string updated_at = 9;
+  string item_id = 10;
+  string item_slug = 11;
+  User user = 12;
+}
+
+message GetOrderDetailResponse {
+  string api_version = 1;
+  OrderDetail data = 2;
+  string error = 3;       // empty string when no error
+}
