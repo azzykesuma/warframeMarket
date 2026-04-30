@@ -1,3 +1,5 @@
-*.env
-main.exe
-server.exe
+.env
+*.exe
+serviceAccount*.json
+firebase-service-account*.json
+*.log

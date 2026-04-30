@@ -57,6 +57,118 @@ func (*Empty) Descriptor() ([]byte, []int) {
 	return file_api_proto_watcher_proto_rawDescGZIP(), []int{0}
 }
 
+type LoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
+	mi := &file_api_proto_watcher_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginRequest) ProtoMessage() {}
+
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_watcher_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *LoginRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type LoginResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	SessionToken  string                 `protobuf:"bytes,2,opt,name=session_token,json=sessionToken,proto3" json:"session_token,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginResponse) Reset() {
+	*x = LoginResponse{}
+	mi := &file_api_proto_watcher_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginResponse) ProtoMessage() {}
+
+func (x *LoginResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_watcher_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
+func (*LoginResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *LoginResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *LoginResponse) GetSessionToken() string {
+	if x != nil {
+		return x.SessionToken
+	}
+	return ""
+}
+
+func (x *LoginResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 // AllItemRequest represents the request to watch all items
 type AllItemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -66,7 +178,7 @@ type AllItemRequest struct {
 
 func (x *AllItemRequest) Reset() {
 	*x = AllItemRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[1]
+	mi := &file_api_proto_watcher_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -78,7 +190,7 @@ func (x *AllItemRequest) String() string {
 func (*AllItemRequest) ProtoMessage() {}
 
 func (x *AllItemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[1]
+	mi := &file_api_proto_watcher_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -91,7 +203,7 @@ func (x *AllItemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllItemRequest.ProtoReflect.Descriptor instead.
 func (*AllItemRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{1}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{3}
 }
 
 // ItemRequest represents the request to watch a specific item.
@@ -104,7 +216,7 @@ type ItemRequest struct {
 
 func (x *ItemRequest) Reset() {
 	*x = ItemRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[2]
+	mi := &file_api_proto_watcher_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116,7 +228,7 @@ func (x *ItemRequest) String() string {
 func (*ItemRequest) ProtoMessage() {}
 
 func (x *ItemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[2]
+	mi := &file_api_proto_watcher_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -129,7 +241,7 @@ func (x *ItemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemRequest.ProtoReflect.Descriptor instead.
 func (*ItemRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{2}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ItemRequest) GetItemName() string {
@@ -148,7 +260,7 @@ type ListItemsRequest struct {
 
 func (x *ListItemsRequest) Reset() {
 	*x = ListItemsRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[3]
+	mi := &file_api_proto_watcher_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -160,7 +272,7 @@ func (x *ListItemsRequest) String() string {
 func (*ListItemsRequest) ProtoMessage() {}
 
 func (x *ListItemsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[3]
+	mi := &file_api_proto_watcher_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -173,7 +285,7 @@ func (x *ListItemsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListItemsRequest.ProtoReflect.Descriptor instead.
 func (*ListItemsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{3}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListItemsRequest) GetLanguage() string {
@@ -194,7 +306,7 @@ type GetItemRequest struct {
 
 func (x *GetItemRequest) Reset() {
 	*x = GetItemRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[4]
+	mi := &file_api_proto_watcher_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -206,7 +318,7 @@ func (x *GetItemRequest) String() string {
 func (*GetItemRequest) ProtoMessage() {}
 
 func (x *GetItemRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[4]
+	mi := &file_api_proto_watcher_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -219,7 +331,7 @@ func (x *GetItemRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetItemRequest.ProtoReflect.Descriptor instead.
 func (*GetItemRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{4}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetItemRequest) GetItemId() string {
@@ -246,7 +358,7 @@ type GetItemBySlugRequest struct {
 
 func (x *GetItemBySlugRequest) Reset() {
 	*x = GetItemBySlugRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[5]
+	mi := &file_api_proto_watcher_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -258,7 +370,7 @@ func (x *GetItemBySlugRequest) String() string {
 func (*GetItemBySlugRequest) ProtoMessage() {}
 
 func (x *GetItemBySlugRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[5]
+	mi := &file_api_proto_watcher_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -271,7 +383,7 @@ func (x *GetItemBySlugRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetItemBySlugRequest.ProtoReflect.Descriptor instead.
 func (*GetItemBySlugRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{5}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetItemBySlugRequest) GetItemSlug() string {
@@ -300,7 +412,7 @@ type GetItemResponse struct {
 
 func (x *GetItemResponse) Reset() {
 	*x = GetItemResponse{}
-	mi := &file_api_proto_watcher_proto_msgTypes[6]
+	mi := &file_api_proto_watcher_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -312,7 +424,7 @@ func (x *GetItemResponse) String() string {
 func (*GetItemResponse) ProtoMessage() {}
 
 func (x *GetItemResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[6]
+	mi := &file_api_proto_watcher_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -325,7 +437,7 @@ func (x *GetItemResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetItemResponse.ProtoReflect.Descriptor instead.
 func (*GetItemResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{6}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetItemResponse) GetApiVersion() string {
@@ -368,7 +480,7 @@ type ItemDetail struct {
 
 func (x *ItemDetail) Reset() {
 	*x = ItemDetail{}
-	mi := &file_api_proto_watcher_proto_msgTypes[7]
+	mi := &file_api_proto_watcher_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -380,7 +492,7 @@ func (x *ItemDetail) String() string {
 func (*ItemDetail) ProtoMessage() {}
 
 func (x *ItemDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[7]
+	mi := &file_api_proto_watcher_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -393,7 +505,7 @@ func (x *ItemDetail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemDetail.ProtoReflect.Descriptor instead.
 func (*ItemDetail) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{7}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ItemDetail) GetId() string {
@@ -482,7 +594,7 @@ type ItemI18N struct {
 
 func (x *ItemI18N) Reset() {
 	*x = ItemI18N{}
-	mi := &file_api_proto_watcher_proto_msgTypes[8]
+	mi := &file_api_proto_watcher_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -494,7 +606,7 @@ func (x *ItemI18N) String() string {
 func (*ItemI18N) ProtoMessage() {}
 
 func (x *ItemI18N) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[8]
+	mi := &file_api_proto_watcher_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -507,7 +619,7 @@ func (x *ItemI18N) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemI18N.ProtoReflect.Descriptor instead.
 func (*ItemI18N) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{8}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ItemI18N) GetEn() *ItemLanguageDetail {
@@ -530,7 +642,7 @@ type ItemLanguageDetail struct {
 
 func (x *ItemLanguageDetail) Reset() {
 	*x = ItemLanguageDetail{}
-	mi := &file_api_proto_watcher_proto_msgTypes[9]
+	mi := &file_api_proto_watcher_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -542,7 +654,7 @@ func (x *ItemLanguageDetail) String() string {
 func (*ItemLanguageDetail) ProtoMessage() {}
 
 func (x *ItemLanguageDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[9]
+	mi := &file_api_proto_watcher_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -555,7 +667,7 @@ func (x *ItemLanguageDetail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemLanguageDetail.ProtoReflect.Descriptor instead.
 func (*ItemLanguageDetail) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{9}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ItemLanguageDetail) GetName() string {
@@ -610,7 +722,7 @@ type ItemShort struct {
 
 func (x *ItemShort) Reset() {
 	*x = ItemShort{}
-	mi := &file_api_proto_watcher_proto_msgTypes[10]
+	mi := &file_api_proto_watcher_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -622,7 +734,7 @@ func (x *ItemShort) String() string {
 func (*ItemShort) ProtoMessage() {}
 
 func (x *ItemShort) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[10]
+	mi := &file_api_proto_watcher_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -635,7 +747,7 @@ func (x *ItemShort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemShort.ProtoReflect.Descriptor instead.
 func (*ItemShort) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{10}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ItemShort) GetId() string {
@@ -712,7 +824,7 @@ type ItemShortList struct {
 
 func (x *ItemShortList) Reset() {
 	*x = ItemShortList{}
-	mi := &file_api_proto_watcher_proto_msgTypes[11]
+	mi := &file_api_proto_watcher_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -724,7 +836,7 @@ func (x *ItemShortList) String() string {
 func (*ItemShortList) ProtoMessage() {}
 
 func (x *ItemShortList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[11]
+	mi := &file_api_proto_watcher_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -737,7 +849,7 @@ func (x *ItemShortList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemShortList.ProtoReflect.Descriptor instead.
 func (*ItemShortList) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{11}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ItemShortList) GetApiVersion() string {
@@ -770,7 +882,7 @@ type ItemOrdersRequest struct {
 
 func (x *ItemOrdersRequest) Reset() {
 	*x = ItemOrdersRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[12]
+	mi := &file_api_proto_watcher_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -782,7 +894,7 @@ func (x *ItemOrdersRequest) String() string {
 func (*ItemOrdersRequest) ProtoMessage() {}
 
 func (x *ItemOrdersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[12]
+	mi := &file_api_proto_watcher_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -795,7 +907,7 @@ func (x *ItemOrdersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemOrdersRequest.ProtoReflect.Descriptor instead.
 func (*ItemOrdersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{12}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ItemOrdersRequest) GetItemSlug() string {
@@ -815,7 +927,7 @@ type TopItemOrdersRequest struct {
 
 func (x *TopItemOrdersRequest) Reset() {
 	*x = TopItemOrdersRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[13]
+	mi := &file_api_proto_watcher_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -827,7 +939,7 @@ func (x *TopItemOrdersRequest) String() string {
 func (*TopItemOrdersRequest) ProtoMessage() {}
 
 func (x *TopItemOrdersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[13]
+	mi := &file_api_proto_watcher_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -840,7 +952,7 @@ func (x *TopItemOrdersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TopItemOrdersRequest.ProtoReflect.Descriptor instead.
 func (*TopItemOrdersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{13}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *TopItemOrdersRequest) GetItemSlug() string {
@@ -871,7 +983,7 @@ type MarketUpdate struct {
 
 func (x *MarketUpdate) Reset() {
 	*x = MarketUpdate{}
-	mi := &file_api_proto_watcher_proto_msgTypes[14]
+	mi := &file_api_proto_watcher_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -883,7 +995,7 @@ func (x *MarketUpdate) String() string {
 func (*MarketUpdate) ProtoMessage() {}
 
 func (x *MarketUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[14]
+	mi := &file_api_proto_watcher_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -896,7 +1008,7 @@ func (x *MarketUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MarketUpdate.ProtoReflect.Descriptor instead.
 func (*MarketUpdate) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{14}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *MarketUpdate) GetItemName() string {
@@ -943,7 +1055,7 @@ type AllMarketUpdate struct {
 
 func (x *AllMarketUpdate) Reset() {
 	*x = AllMarketUpdate{}
-	mi := &file_api_proto_watcher_proto_msgTypes[15]
+	mi := &file_api_proto_watcher_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -955,7 +1067,7 @@ func (x *AllMarketUpdate) String() string {
 func (*AllMarketUpdate) ProtoMessage() {}
 
 func (x *AllMarketUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[15]
+	mi := &file_api_proto_watcher_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -968,7 +1080,7 @@ func (x *AllMarketUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllMarketUpdate.ProtoReflect.Descriptor instead.
 func (*AllMarketUpdate) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{15}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *AllMarketUpdate) GetMarketUpdates() []*MarketUpdate {
@@ -997,7 +1109,7 @@ type Order struct {
 
 func (x *Order) Reset() {
 	*x = Order{}
-	mi := &file_api_proto_watcher_proto_msgTypes[16]
+	mi := &file_api_proto_watcher_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1009,7 +1121,7 @@ func (x *Order) String() string {
 func (*Order) ProtoMessage() {}
 
 func (x *Order) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[16]
+	mi := &file_api_proto_watcher_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1022,7 +1134,7 @@ func (x *Order) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Order.ProtoReflect.Descriptor instead.
 func (*Order) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{16}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *Order) GetId() string {
@@ -1113,7 +1225,7 @@ type OrderList struct {
 
 func (x *OrderList) Reset() {
 	*x = OrderList{}
-	mi := &file_api_proto_watcher_proto_msgTypes[17]
+	mi := &file_api_proto_watcher_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1125,7 +1237,7 @@ func (x *OrderList) String() string {
 func (*OrderList) ProtoMessage() {}
 
 func (x *OrderList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[17]
+	mi := &file_api_proto_watcher_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1138,7 +1250,7 @@ func (x *OrderList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderList.ProtoReflect.Descriptor instead.
 func (*OrderList) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{17}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *OrderList) GetApiVersion() string {
@@ -1174,7 +1286,7 @@ type TopOrdersResponse struct {
 
 func (x *TopOrdersResponse) Reset() {
 	*x = TopOrdersResponse{}
-	mi := &file_api_proto_watcher_proto_msgTypes[18]
+	mi := &file_api_proto_watcher_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1186,7 +1298,7 @@ func (x *TopOrdersResponse) String() string {
 func (*TopOrdersResponse) ProtoMessage() {}
 
 func (x *TopOrdersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[18]
+	mi := &file_api_proto_watcher_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1199,7 +1311,7 @@ func (x *TopOrdersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TopOrdersResponse.ProtoReflect.Descriptor instead.
 func (*TopOrdersResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{18}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *TopOrdersResponse) GetApiVersion() string {
@@ -1243,7 +1355,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_api_proto_watcher_proto_msgTypes[19]
+	mi := &file_api_proto_watcher_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1255,7 +1367,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[19]
+	mi := &file_api_proto_watcher_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1268,7 +1380,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{19}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *User) GetId() string {
@@ -1320,7 +1432,7 @@ type CreateOrderRequest struct {
 
 func (x *CreateOrderRequest) Reset() {
 	*x = CreateOrderRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[20]
+	mi := &file_api_proto_watcher_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1332,7 +1444,7 @@ func (x *CreateOrderRequest) String() string {
 func (*CreateOrderRequest) ProtoMessage() {}
 
 func (x *CreateOrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[20]
+	mi := &file_api_proto_watcher_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1345,7 +1457,7 @@ func (x *CreateOrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateOrderRequest.ProtoReflect.Descriptor instead.
 func (*CreateOrderRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{20}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *CreateOrderRequest) GetItemId() string {
@@ -1402,7 +1514,7 @@ type UpdateOrderRequest struct {
 
 func (x *UpdateOrderRequest) Reset() {
 	*x = UpdateOrderRequest{}
-	mi := &file_api_proto_watcher_proto_msgTypes[21]
+	mi := &file_api_proto_watcher_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1414,7 +1526,7 @@ func (x *UpdateOrderRequest) String() string {
 func (*UpdateOrderRequest) ProtoMessage() {}
 
 func (x *UpdateOrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[21]
+	mi := &file_api_proto_watcher_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1427,7 +1539,7 @@ func (x *UpdateOrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateOrderRequest.ProtoReflect.Descriptor instead.
 func (*UpdateOrderRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{21}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *UpdateOrderRequest) GetId() string {
@@ -1468,7 +1580,7 @@ type ActionResponse struct {
 
 func (x *ActionResponse) Reset() {
 	*x = ActionResponse{}
-	mi := &file_api_proto_watcher_proto_msgTypes[22]
+	mi := &file_api_proto_watcher_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1480,7 +1592,7 @@ func (x *ActionResponse) String() string {
 func (*ActionResponse) ProtoMessage() {}
 
 func (x *ActionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[22]
+	mi := &file_api_proto_watcher_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1493,7 +1605,7 @@ func (x *ActionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionResponse.ProtoReflect.Descriptor instead.
 func (*ActionResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{22}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ActionResponse) GetSuccess() bool {
@@ -1525,7 +1637,7 @@ type Transaction struct {
 
 func (x *Transaction) Reset() {
 	*x = Transaction{}
-	mi := &file_api_proto_watcher_proto_msgTypes[23]
+	mi := &file_api_proto_watcher_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1537,7 +1649,7 @@ func (x *Transaction) String() string {
 func (*Transaction) ProtoMessage() {}
 
 func (x *Transaction) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[23]
+	mi := &file_api_proto_watcher_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1550,7 +1662,7 @@ func (x *Transaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
 func (*Transaction) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{23}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *Transaction) GetId() string {
@@ -1611,7 +1723,7 @@ type TransactionList struct {
 
 func (x *TransactionList) Reset() {
 	*x = TransactionList{}
-	mi := &file_api_proto_watcher_proto_msgTypes[24]
+	mi := &file_api_proto_watcher_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1623,7 +1735,7 @@ func (x *TransactionList) String() string {
 func (*TransactionList) ProtoMessage() {}
 
 func (x *TransactionList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[24]
+	mi := &file_api_proto_watcher_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1636,7 +1748,7 @@ func (x *TransactionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionList.ProtoReflect.Descriptor instead.
 func (*TransactionList) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{24}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *TransactionList) GetTransactions() []*Transaction {
@@ -1655,7 +1767,7 @@ type OrderId struct {
 
 func (x *OrderId) Reset() {
 	*x = OrderId{}
-	mi := &file_api_proto_watcher_proto_msgTypes[25]
+	mi := &file_api_proto_watcher_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1667,7 +1779,7 @@ func (x *OrderId) String() string {
 func (*OrderId) ProtoMessage() {}
 
 func (x *OrderId) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[25]
+	mi := &file_api_proto_watcher_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1680,7 +1792,7 @@ func (x *OrderId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderId.ProtoReflect.Descriptor instead.
 func (*OrderId) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{25}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *OrderId) GetId() string {
@@ -1710,7 +1822,7 @@ type OrderDetail struct {
 
 func (x *OrderDetail) Reset() {
 	*x = OrderDetail{}
-	mi := &file_api_proto_watcher_proto_msgTypes[26]
+	mi := &file_api_proto_watcher_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1722,7 +1834,7 @@ func (x *OrderDetail) String() string {
 func (*OrderDetail) ProtoMessage() {}
 
 func (x *OrderDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[26]
+	mi := &file_api_proto_watcher_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1735,7 +1847,7 @@ func (x *OrderDetail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderDetail.ProtoReflect.Descriptor instead.
 func (*OrderDetail) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{26}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *OrderDetail) GetId() string {
@@ -1833,7 +1945,7 @@ type GetOrderDetailResponse struct {
 
 func (x *GetOrderDetailResponse) Reset() {
 	*x = GetOrderDetailResponse{}
-	mi := &file_api_proto_watcher_proto_msgTypes[27]
+	mi := &file_api_proto_watcher_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1845,7 +1957,7 @@ func (x *GetOrderDetailResponse) String() string {
 func (*GetOrderDetailResponse) ProtoMessage() {}
 
 func (x *GetOrderDetailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_watcher_proto_msgTypes[27]
+	mi := &file_api_proto_watcher_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1858,7 +1970,7 @@ func (x *GetOrderDetailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOrderDetailResponse.ProtoReflect.Descriptor instead.
 func (*GetOrderDetailResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_watcher_proto_rawDescGZIP(), []int{27}
+	return file_api_proto_watcher_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetOrderDetailResponse) GetApiVersion() string {
@@ -1887,7 +1999,14 @@ var File_api_proto_watcher_proto protoreflect.FileDescriptor
 const file_api_proto_watcher_proto_rawDesc = "" +
 	"\n" +
 	"\x17api/proto/watcher.proto\x12\awatcher\"\a\n" +
-	"\x05Empty\"\x10\n" +
+	"\x05Empty\"F\n" +
+	"\fLoginRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"h\n" +
+	"\rLoginResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12#\n" +
+	"\rsession_token\x18\x02 \x01(\tR\fsessionToken\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\x10\n" +
 	"\x0eAllItemRequest\"*\n" +
 	"\vItemRequest\x12\x1b\n" +
 	"\titem_name\x18\x01 \x01(\tR\bitemName\".\n" +
@@ -2041,8 +2160,10 @@ const file_api_proto_watcher_proto_rawDesc = "" +
 	"\vapi_version\x18\x01 \x01(\tR\n" +
 	"apiVersion\x12(\n" +
 	"\x04data\x18\x02 \x01(\v2\x14.watcher.OrderDetailR\x04data\x12\x14\n" +
-	"\x05error\x18\x03 \x01(\tR\x05error2\xfd\x06\n" +
-	"\x15WarframeMarketWatcher\x12<\n" +
+	"\x05error\x18\x03 \x01(\tR\x05error2\xe8\a\n" +
+	"\x15WarframeMarketWatcher\x126\n" +
+	"\x05Login\x12\x15.watcher.LoginRequest\x1a\x16.watcher.LoginResponse\x121\n" +
+	"\x06Logout\x12\x0e.watcher.Empty\x1a\x17.watcher.ActionResponse\x12<\n" +
 	"\tWatchItem\x12\x14.watcher.ItemRequest\x1a\x15.watcher.MarketUpdate\"\x000\x01\x12E\n" +
 	"\fWatchAllItem\x12\x17.watcher.AllItemRequest\x1a\x18.watcher.AllMarketUpdate\"\x000\x01\x12>\n" +
 	"\tListItems\x12\x19.watcher.ListItemsRequest\x1a\x16.watcher.ItemShortList\x12@\n" +
@@ -2069,79 +2190,85 @@ func file_api_proto_watcher_proto_rawDescGZIP() []byte {
 	return file_api_proto_watcher_proto_rawDescData
 }
 
-var file_api_proto_watcher_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_api_proto_watcher_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_api_proto_watcher_proto_goTypes = []any{
 	(*Empty)(nil),                  // 0: watcher.Empty
-	(*AllItemRequest)(nil),         // 1: watcher.AllItemRequest
-	(*ItemRequest)(nil),            // 2: watcher.ItemRequest
-	(*ListItemsRequest)(nil),       // 3: watcher.ListItemsRequest
-	(*GetItemRequest)(nil),         // 4: watcher.GetItemRequest
-	(*GetItemBySlugRequest)(nil),   // 5: watcher.GetItemBySlugRequest
-	(*GetItemResponse)(nil),        // 6: watcher.GetItemResponse
-	(*ItemDetail)(nil),             // 7: watcher.ItemDetail
-	(*ItemI18N)(nil),               // 8: watcher.ItemI18N
-	(*ItemLanguageDetail)(nil),     // 9: watcher.ItemLanguageDetail
-	(*ItemShort)(nil),              // 10: watcher.ItemShort
-	(*ItemShortList)(nil),          // 11: watcher.ItemShortList
-	(*ItemOrdersRequest)(nil),      // 12: watcher.ItemOrdersRequest
-	(*TopItemOrdersRequest)(nil),   // 13: watcher.TopItemOrdersRequest
-	(*MarketUpdate)(nil),           // 14: watcher.MarketUpdate
-	(*AllMarketUpdate)(nil),        // 15: watcher.AllMarketUpdate
-	(*Order)(nil),                  // 16: watcher.Order
-	(*OrderList)(nil),              // 17: watcher.OrderList
-	(*TopOrdersResponse)(nil),      // 18: watcher.TopOrdersResponse
-	(*User)(nil),                   // 19: watcher.User
-	(*CreateOrderRequest)(nil),     // 20: watcher.CreateOrderRequest
-	(*UpdateOrderRequest)(nil),     // 21: watcher.UpdateOrderRequest
-	(*ActionResponse)(nil),         // 22: watcher.ActionResponse
-	(*Transaction)(nil),            // 23: watcher.Transaction
-	(*TransactionList)(nil),        // 24: watcher.TransactionList
-	(*OrderId)(nil),                // 25: watcher.OrderId
-	(*OrderDetail)(nil),            // 26: watcher.OrderDetail
-	(*GetOrderDetailResponse)(nil), // 27: watcher.GetOrderDetailResponse
+	(*LoginRequest)(nil),           // 1: watcher.LoginRequest
+	(*LoginResponse)(nil),          // 2: watcher.LoginResponse
+	(*AllItemRequest)(nil),         // 3: watcher.AllItemRequest
+	(*ItemRequest)(nil),            // 4: watcher.ItemRequest
+	(*ListItemsRequest)(nil),       // 5: watcher.ListItemsRequest
+	(*GetItemRequest)(nil),         // 6: watcher.GetItemRequest
+	(*GetItemBySlugRequest)(nil),   // 7: watcher.GetItemBySlugRequest
+	(*GetItemResponse)(nil),        // 8: watcher.GetItemResponse
+	(*ItemDetail)(nil),             // 9: watcher.ItemDetail
+	(*ItemI18N)(nil),               // 10: watcher.ItemI18N
+	(*ItemLanguageDetail)(nil),     // 11: watcher.ItemLanguageDetail
+	(*ItemShort)(nil),              // 12: watcher.ItemShort
+	(*ItemShortList)(nil),          // 13: watcher.ItemShortList
+	(*ItemOrdersRequest)(nil),      // 14: watcher.ItemOrdersRequest
+	(*TopItemOrdersRequest)(nil),   // 15: watcher.TopItemOrdersRequest
+	(*MarketUpdate)(nil),           // 16: watcher.MarketUpdate
+	(*AllMarketUpdate)(nil),        // 17: watcher.AllMarketUpdate
+	(*Order)(nil),                  // 18: watcher.Order
+	(*OrderList)(nil),              // 19: watcher.OrderList
+	(*TopOrdersResponse)(nil),      // 20: watcher.TopOrdersResponse
+	(*User)(nil),                   // 21: watcher.User
+	(*CreateOrderRequest)(nil),     // 22: watcher.CreateOrderRequest
+	(*UpdateOrderRequest)(nil),     // 23: watcher.UpdateOrderRequest
+	(*ActionResponse)(nil),         // 24: watcher.ActionResponse
+	(*Transaction)(nil),            // 25: watcher.Transaction
+	(*TransactionList)(nil),        // 26: watcher.TransactionList
+	(*OrderId)(nil),                // 27: watcher.OrderId
+	(*OrderDetail)(nil),            // 28: watcher.OrderDetail
+	(*GetOrderDetailResponse)(nil), // 29: watcher.GetOrderDetailResponse
 }
 var file_api_proto_watcher_proto_depIdxs = []int32{
-	7,  // 0: watcher.GetItemResponse.data:type_name -> watcher.ItemDetail
-	8,  // 1: watcher.ItemDetail.i18n:type_name -> watcher.ItemI18N
-	9,  // 2: watcher.ItemI18N.en:type_name -> watcher.ItemLanguageDetail
-	8,  // 3: watcher.ItemShort.i18n:type_name -> watcher.ItemI18N
-	10, // 4: watcher.ItemShortList.items:type_name -> watcher.ItemShort
-	14, // 5: watcher.AllMarketUpdate.market_updates:type_name -> watcher.MarketUpdate
-	19, // 6: watcher.Order.user:type_name -> watcher.User
-	16, // 7: watcher.OrderList.orders:type_name -> watcher.Order
-	16, // 8: watcher.TopOrdersResponse.sell:type_name -> watcher.Order
-	16, // 9: watcher.TopOrdersResponse.buy:type_name -> watcher.Order
-	23, // 10: watcher.TransactionList.transactions:type_name -> watcher.Transaction
-	19, // 11: watcher.OrderDetail.user:type_name -> watcher.User
-	26, // 12: watcher.GetOrderDetailResponse.data:type_name -> watcher.OrderDetail
-	2,  // 13: watcher.WarframeMarketWatcher.WatchItem:input_type -> watcher.ItemRequest
-	1,  // 14: watcher.WarframeMarketWatcher.WatchAllItem:input_type -> watcher.AllItemRequest
-	3,  // 15: watcher.WarframeMarketWatcher.ListItems:input_type -> watcher.ListItemsRequest
-	4,  // 16: watcher.WarframeMarketWatcher.GetItemById:input_type -> watcher.GetItemRequest
-	5,  // 17: watcher.WarframeMarketWatcher.GetItemBySlug:input_type -> watcher.GetItemBySlugRequest
-	12, // 18: watcher.WarframeMarketWatcher.GetItemOrders:input_type -> watcher.ItemOrdersRequest
-	13, // 19: watcher.WarframeMarketWatcher.GetTopItemOrders:input_type -> watcher.TopItemOrdersRequest
-	0,  // 20: watcher.WarframeMarketWatcher.GetMyOrders:input_type -> watcher.Empty
-	20, // 21: watcher.WarframeMarketWatcher.CreateOrder:input_type -> watcher.CreateOrderRequest
-	21, // 22: watcher.WarframeMarketWatcher.UpdateOrder:input_type -> watcher.UpdateOrderRequest
-	25, // 23: watcher.WarframeMarketWatcher.DeleteOrder:input_type -> watcher.OrderId
-	2,  // 24: watcher.WarframeMarketWatcher.GetRecentTransactions:input_type -> watcher.ItemRequest
-	25, // 25: watcher.WarframeMarketWatcher.GetOrderDetail:input_type -> watcher.OrderId
-	14, // 26: watcher.WarframeMarketWatcher.WatchItem:output_type -> watcher.MarketUpdate
-	15, // 27: watcher.WarframeMarketWatcher.WatchAllItem:output_type -> watcher.AllMarketUpdate
-	11, // 28: watcher.WarframeMarketWatcher.ListItems:output_type -> watcher.ItemShortList
-	6,  // 29: watcher.WarframeMarketWatcher.GetItemById:output_type -> watcher.GetItemResponse
-	6,  // 30: watcher.WarframeMarketWatcher.GetItemBySlug:output_type -> watcher.GetItemResponse
-	17, // 31: watcher.WarframeMarketWatcher.GetItemOrders:output_type -> watcher.OrderList
-	18, // 32: watcher.WarframeMarketWatcher.GetTopItemOrders:output_type -> watcher.TopOrdersResponse
-	17, // 33: watcher.WarframeMarketWatcher.GetMyOrders:output_type -> watcher.OrderList
-	22, // 34: watcher.WarframeMarketWatcher.CreateOrder:output_type -> watcher.ActionResponse
-	22, // 35: watcher.WarframeMarketWatcher.UpdateOrder:output_type -> watcher.ActionResponse
-	22, // 36: watcher.WarframeMarketWatcher.DeleteOrder:output_type -> watcher.ActionResponse
-	24, // 37: watcher.WarframeMarketWatcher.GetRecentTransactions:output_type -> watcher.TransactionList
-	27, // 38: watcher.WarframeMarketWatcher.GetOrderDetail:output_type -> watcher.GetOrderDetailResponse
-	26, // [26:39] is the sub-list for method output_type
-	13, // [13:26] is the sub-list for method input_type
+	9,  // 0: watcher.GetItemResponse.data:type_name -> watcher.ItemDetail
+	10, // 1: watcher.ItemDetail.i18n:type_name -> watcher.ItemI18N
+	11, // 2: watcher.ItemI18N.en:type_name -> watcher.ItemLanguageDetail
+	10, // 3: watcher.ItemShort.i18n:type_name -> watcher.ItemI18N
+	12, // 4: watcher.ItemShortList.items:type_name -> watcher.ItemShort
+	16, // 5: watcher.AllMarketUpdate.market_updates:type_name -> watcher.MarketUpdate
+	21, // 6: watcher.Order.user:type_name -> watcher.User
+	18, // 7: watcher.OrderList.orders:type_name -> watcher.Order
+	18, // 8: watcher.TopOrdersResponse.sell:type_name -> watcher.Order
+	18, // 9: watcher.TopOrdersResponse.buy:type_name -> watcher.Order
+	25, // 10: watcher.TransactionList.transactions:type_name -> watcher.Transaction
+	21, // 11: watcher.OrderDetail.user:type_name -> watcher.User
+	28, // 12: watcher.GetOrderDetailResponse.data:type_name -> watcher.OrderDetail
+	1,  // 13: watcher.WarframeMarketWatcher.Login:input_type -> watcher.LoginRequest
+	0,  // 14: watcher.WarframeMarketWatcher.Logout:input_type -> watcher.Empty
+	4,  // 15: watcher.WarframeMarketWatcher.WatchItem:input_type -> watcher.ItemRequest
+	3,  // 16: watcher.WarframeMarketWatcher.WatchAllItem:input_type -> watcher.AllItemRequest
+	5,  // 17: watcher.WarframeMarketWatcher.ListItems:input_type -> watcher.ListItemsRequest
+	6,  // 18: watcher.WarframeMarketWatcher.GetItemById:input_type -> watcher.GetItemRequest
+	7,  // 19: watcher.WarframeMarketWatcher.GetItemBySlug:input_type -> watcher.GetItemBySlugRequest
+	14, // 20: watcher.WarframeMarketWatcher.GetItemOrders:input_type -> watcher.ItemOrdersRequest
+	15, // 21: watcher.WarframeMarketWatcher.GetTopItemOrders:input_type -> watcher.TopItemOrdersRequest
+	0,  // 22: watcher.WarframeMarketWatcher.GetMyOrders:input_type -> watcher.Empty
+	22, // 23: watcher.WarframeMarketWatcher.CreateOrder:input_type -> watcher.CreateOrderRequest
+	23, // 24: watcher.WarframeMarketWatcher.UpdateOrder:input_type -> watcher.UpdateOrderRequest
+	27, // 25: watcher.WarframeMarketWatcher.DeleteOrder:input_type -> watcher.OrderId
+	4,  // 26: watcher.WarframeMarketWatcher.GetRecentTransactions:input_type -> watcher.ItemRequest
+	27, // 27: watcher.WarframeMarketWatcher.GetOrderDetail:input_type -> watcher.OrderId
+	2,  // 28: watcher.WarframeMarketWatcher.Login:output_type -> watcher.LoginResponse
+	24, // 29: watcher.WarframeMarketWatcher.Logout:output_type -> watcher.ActionResponse
+	16, // 30: watcher.WarframeMarketWatcher.WatchItem:output_type -> watcher.MarketUpdate
+	17, // 31: watcher.WarframeMarketWatcher.WatchAllItem:output_type -> watcher.AllMarketUpdate
+	13, // 32: watcher.WarframeMarketWatcher.ListItems:output_type -> watcher.ItemShortList
+	8,  // 33: watcher.WarframeMarketWatcher.GetItemById:output_type -> watcher.GetItemResponse
+	8,  // 34: watcher.WarframeMarketWatcher.GetItemBySlug:output_type -> watcher.GetItemResponse
+	19, // 35: watcher.WarframeMarketWatcher.GetItemOrders:output_type -> watcher.OrderList
+	20, // 36: watcher.WarframeMarketWatcher.GetTopItemOrders:output_type -> watcher.TopOrdersResponse
+	19, // 37: watcher.WarframeMarketWatcher.GetMyOrders:output_type -> watcher.OrderList
+	24, // 38: watcher.WarframeMarketWatcher.CreateOrder:output_type -> watcher.ActionResponse
+	24, // 39: watcher.WarframeMarketWatcher.UpdateOrder:output_type -> watcher.ActionResponse
+	24, // 40: watcher.WarframeMarketWatcher.DeleteOrder:output_type -> watcher.ActionResponse
+	26, // 41: watcher.WarframeMarketWatcher.GetRecentTransactions:output_type -> watcher.TransactionList
+	29, // 42: watcher.WarframeMarketWatcher.GetOrderDetail:output_type -> watcher.GetOrderDetailResponse
+	28, // [28:43] is the sub-list for method output_type
+	13, // [13:28] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name
@@ -2158,7 +2285,7 @@ func file_api_proto_watcher_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_watcher_proto_rawDesc), len(file_api_proto_watcher_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   28,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

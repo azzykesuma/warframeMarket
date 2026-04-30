@@ -6,6 +6,9 @@ option go_package = "github.com/azzykesuma/warframeMarket/api/proto";
 
 // WarframeMarketWatcher provides methods to watch for market updates.
 service WarframeMarketWatcher {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Logout(Empty) returns (ActionResponse);
+
   // WatchItem allows a client to subscribe to market updates for a specific item.
   rpc WatchItem(ItemRequest) returns (stream MarketUpdate) {}
   rpc WatchAllItem(AllItemRequest) returns (stream AllMarketUpdate) {}
@@ -24,6 +27,17 @@ service WarframeMarketWatcher {
 }
 
 message Empty {}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string session_token = 2;
+  string message = 3;
+}
 
 // AllItemRequest represents the request to watch all items
 message AllItemRequest {}

@@ -8,7 +8,9 @@ import (
 	"testing"
 
 	pb "github.com/azzykesuma/warframeMarket/api/proto"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 )
 
@@ -100,5 +102,77 @@ func TestCreateOrderValidation(t *testing.T) {
 	_, err := server.CreateOrder(context.Background(), &pb.CreateOrderRequest{ItemId: "item-1", Platinum: 0, Quantity: 1})
 	if status.Code(err) != codes.InvalidArgument {
 		t.Fatalf("status code = %v, want %v", status.Code(err), codes.InvalidArgument)
+	}
+}
+
+func TestLoginCreatesSessionToken(t *testing.T) {
+	server := newWatcherServerFromConfigWithAuth("http://example.test", "", "en", "aoi umi", "blue_sea_30", nil)
+
+	res, err := server.Login(context.Background(), &pb.LoginRequest{
+		Username: "aoi umi",
+		Password: "blue_sea_30",
+	})
+	if err != nil {
+		t.Fatalf("Login returned error: %v", err)
+	}
+	if !res.GetSuccess() || res.GetSessionToken() == "" {
+		t.Fatalf("unexpected login response: %+v", res)
+	}
+	if !server.hasSession(res.GetSessionToken()) {
+		t.Fatalf("session token was not stored")
+	}
+}
+
+func TestLoginRejectsInvalidCredentials(t *testing.T) {
+	server := newWatcherServerFromConfigWithAuth("http://example.test", "", "en", "aoi umi", "blue_sea_30", nil)
+
+	_, err := server.Login(context.Background(), &pb.LoginRequest{
+		Username: "aoi umi",
+		Password: "wrong",
+	})
+	if status.Code(err) != codes.Unauthenticated {
+		t.Fatalf("status code = %v, want %v", status.Code(err), codes.Unauthenticated)
+	}
+}
+
+func TestUnaryAuthInterceptorRequiresValidToken(t *testing.T) {
+	server := newWatcherServerFromConfigWithAuth("http://example.test", "", "en", "aoi umi", "blue_sea_30", nil)
+	info := &grpc.UnaryServerInfo{FullMethod: "/watcher.WarframeMarketWatcher/ListItems"}
+	handler := func(ctx context.Context, req any) (any, error) {
+		return &pb.ItemShortList{}, nil
+	}
+
+	_, err := server.unaryAuthInterceptor(context.Background(), &pb.ListItemsRequest{}, info, handler)
+	if status.Code(err) != codes.Unauthenticated {
+		t.Fatalf("missing token code = %v, want %v", status.Code(err), codes.Unauthenticated)
+	}
+
+	login, err := server.Login(context.Background(), &pb.LoginRequest{Username: "aoi umi", Password: "blue_sea_30"})
+	if err != nil {
+		t.Fatalf("Login returned error: %v", err)
+	}
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs("authorization", "Bearer "+login.GetSessionToken()))
+	if _, err := server.unaryAuthInterceptor(ctx, &pb.ListItemsRequest{}, info, handler); err != nil {
+		t.Fatalf("valid token returned error: %v", err)
+	}
+
+	if _, err := server.Logout(ctx, &pb.Empty{}); err != nil {
+		t.Fatalf("Logout returned error: %v", err)
+	}
+	_, err = server.unaryAuthInterceptor(ctx, &pb.ListItemsRequest{}, info, handler)
+	if status.Code(err) != codes.Unauthenticated {
+		t.Fatalf("logged out token code = %v, want %v", status.Code(err), codes.Unauthenticated)
+	}
+}
+
+func TestLoginMethodBypassesAuthInterceptor(t *testing.T) {
+	server := newWatcherServerFromConfigWithAuth("http://example.test", "", "en", "aoi umi", "blue_sea_30", nil)
+	info := &grpc.UnaryServerInfo{FullMethod: "/watcher.WarframeMarketWatcher/Login"}
+	handler := func(ctx context.Context, req any) (any, error) {
+		return &pb.LoginResponse{Success: true}, nil
+	}
+
+	if _, err := server.unaryAuthInterceptor(context.Background(), &pb.LoginRequest{}, info, handler); err != nil {
+		t.Fatalf("Login should bypass auth interceptor: %v", err)
 	}
 }

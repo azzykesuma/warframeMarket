@@ -19,6 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	WarframeMarketWatcher_Login_FullMethodName                 = "/watcher.WarframeMarketWatcher/Login"
+	WarframeMarketWatcher_Logout_FullMethodName                = "/watcher.WarframeMarketWatcher/Logout"
 	WarframeMarketWatcher_WatchItem_FullMethodName             = "/watcher.WarframeMarketWatcher/WatchItem"
 	WarframeMarketWatcher_WatchAllItem_FullMethodName          = "/watcher.WarframeMarketWatcher/WatchAllItem"
 	WarframeMarketWatcher_ListItems_FullMethodName             = "/watcher.WarframeMarketWatcher/ListItems"
@@ -40,6 +42,8 @@ const (
 //
 // WarframeMarketWatcher provides methods to watch for market updates.
 type WarframeMarketWatcherClient interface {
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ActionResponse, error)
 	// WatchItem allows a client to subscribe to market updates for a specific item.
 	WatchItem(ctx context.Context, in *ItemRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[MarketUpdate], error)
 	WatchAllItem(ctx context.Context, in *AllItemRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AllMarketUpdate], error)
@@ -62,6 +66,26 @@ type warframeMarketWatcherClient struct {
 
 func NewWarframeMarketWatcherClient(cc grpc.ClientConnInterface) WarframeMarketWatcherClient {
 	return &warframeMarketWatcherClient{cc}
+}
+
+func (c *warframeMarketWatcherClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, WarframeMarketWatcher_Login_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *warframeMarketWatcherClient) Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ActionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ActionResponse)
+	err := c.cc.Invoke(ctx, WarframeMarketWatcher_Logout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *warframeMarketWatcherClient) WatchItem(ctx context.Context, in *ItemRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[MarketUpdate], error) {
@@ -218,6 +242,8 @@ func (c *warframeMarketWatcherClient) GetOrderDetail(ctx context.Context, in *Or
 //
 // WarframeMarketWatcher provides methods to watch for market updates.
 type WarframeMarketWatcherServer interface {
+	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	Logout(context.Context, *Empty) (*ActionResponse, error)
 	// WatchItem allows a client to subscribe to market updates for a specific item.
 	WatchItem(*ItemRequest, grpc.ServerStreamingServer[MarketUpdate]) error
 	WatchAllItem(*AllItemRequest, grpc.ServerStreamingServer[AllMarketUpdate]) error
@@ -242,6 +268,12 @@ type WarframeMarketWatcherServer interface {
 // pointer dereference when methods are called.
 type UnimplementedWarframeMarketWatcherServer struct{}
 
+func (UnimplementedWarframeMarketWatcherServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedWarframeMarketWatcherServer) Logout(context.Context, *Empty) (*ActionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Logout not implemented")
+}
 func (UnimplementedWarframeMarketWatcherServer) WatchItem(*ItemRequest, grpc.ServerStreamingServer[MarketUpdate]) error {
 	return status.Error(codes.Unimplemented, "method WatchItem not implemented")
 }
@@ -300,6 +332,42 @@ func RegisterWarframeMarketWatcherServer(s grpc.ServiceRegistrar, srv WarframeMa
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&WarframeMarketWatcher_ServiceDesc, srv)
+}
+
+func _WarframeMarketWatcher_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WarframeMarketWatcherServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WarframeMarketWatcher_Login_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WarframeMarketWatcherServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WarframeMarketWatcher_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WarframeMarketWatcherServer).Logout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WarframeMarketWatcher_Logout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WarframeMarketWatcherServer).Logout(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _WarframeMarketWatcher_WatchItem_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -529,6 +597,14 @@ var WarframeMarketWatcher_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "watcher.WarframeMarketWatcher",
 	HandlerType: (*WarframeMarketWatcherServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Login",
+			Handler:    _WarframeMarketWatcher_Login_Handler,
+		},
+		{
+			MethodName: "Logout",
+			Handler:    _WarframeMarketWatcher_Logout_Handler,
+		},
 		{
 			MethodName: "ListItems",
 			Handler:    _WarframeMarketWatcher_ListItems_Handler,
